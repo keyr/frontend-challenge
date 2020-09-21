@@ -20,16 +20,11 @@ export default () => {
       return;
     }
     setCart([...cart, courseName]);
+    setSelected(null);
   };
 
   const handleDeleteCourse = (courseName) => {
-    setCart(
-      cart.map((course) => {
-        if (course !== courseName) {
-          return course;
-        }
-      })
-    );
+    setCart(cart.filter((course) => course !== courseName));
   };
 
   return (
@@ -37,6 +32,7 @@ export default () => {
       <Courses
         handleSelectedCourse={handleSelectedCourse}
         handleAddCourse={handleAddCourse}
+        cart={cart}
       />
       <SelectedCourse selectedCourse={selected} />
       <Cart cart={cart} handleDeleteCourse={handleDeleteCourse} />

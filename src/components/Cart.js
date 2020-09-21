@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ cart }) => {
+export default ({ cart, handleDeleteCourse }) => {
   if (cart.length === 0) {
     return (
       <div className="box cart-container">
@@ -19,7 +19,10 @@ export default ({ cart }) => {
             return (
               <div className="flex-container">
                 <p>{courseName}</p>
-                <a class="course-delete delete is-medium"></a>
+                <a
+                  className="course-delete delete is-medium"
+                  onClick={() => handleDeleteCourse(courseName)}
+                ></a>
               </div>
             );
           })}

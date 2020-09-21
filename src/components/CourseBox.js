@@ -1,9 +1,14 @@
 import React from "react";
 
-export default ({ courseProps, handleSelectedCourse, handleAddCourse }) => {
+export default ({
+  courseProps,
+  handleSelectedCourse,
+  handleAddCourse,
+  isDisabled,
+}) => {
   return (
     <div
-      className="course-box box"
+      className={`course-box box ${isDisabled && "disabled-box"}`}
       onClick={() => handleSelectedCourse(courseProps)}
     >
       <div className="flex-container">
@@ -15,6 +20,7 @@ export default ({ courseProps, handleSelectedCourse, handleAddCourse }) => {
           onClick={() =>
             handleAddCourse(`${courseProps.dept}-${courseProps.number}`)
           }
+          disabled={isDisabled}
         >
           Add Course
         </button>

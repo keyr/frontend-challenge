@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.course-container {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-container {
+  position: fixed;
+  right: 5%;
+  width: 20%;
+  top: 20%;
+  height: 60%;
+}
+
+.selected-container {
+  position: fixed;
+  top: 20%;
+  right: 30%;
+  width: 20%;
+  overflow: scroll;
+  max-height: 60%;
+}
+
+.add-button {
+  margin-left: 60%;
+}
+
+.course-delete {
+  margin-bottom: 1%;
+}
+
+.course-box:hover,
+.course-delete:hover {
+  cursor: pointer;
+}

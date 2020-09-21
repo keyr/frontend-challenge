@@ -1,26 +1,19 @@
-import React, { Component } from 'react'
-import './App.css'
+import React, { Component } from "react";
+import "./App.css";
+import "bulma/css/bulma.css";
 
-import Nav from './components/Nav'
-import Courses from './components/Courses'
-import Cart from './components/Cart'
+import Nav from "./components/Nav";
+import CourseSelector from "./components/CourseSelector";
 
 class App extends Component {
   render() {
     return (
       <>
         <Nav />
-        <div style={{
-          width: '100%',
-          boxSizing: 'border-box',
-          padding: '0 calc(1rem + 10%)',
-        }}>
-          <Courses />
-          <Cart />
-        </div>
+        <CourseSelector />
       </>
     );
   }
 }
 
-export default App
+export default App;

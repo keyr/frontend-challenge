@@ -4,8 +4,9 @@ import SearchBar from "./SearchBar";
 
 export default ({ handleSelectedCourse, handleAddCourse, cart }) => {
   const [search, setSearch] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [courses, setCourses] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
@@ -14,6 +15,7 @@ export default ({ handleSelectedCourse, handleAddCourse, cart }) => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     if (search.trim().length === 0) {
+      setError("You need to type something in!");
       return;
     }
     setIsLoading(true);
@@ -23,20 +25,37 @@ export default ({ handleSelectedCourse, handleAddCourse, cart }) => {
     })
       .then((resp) => resp.json())
       .then((coursesData) => {
-        if (!coursesData || !coursesData.courses) {
+        if (
+          !coursesData ||
+          !coursesData.courses ||
+          coursesData.courses.length === 0
+        ) {
+          setError("Search is not valid!");
           setIsLoading(false);
           return;
         }
-        setCourses(
-          coursesData.courses.map((courseData) => {
-            return {
+        setError("");
+        const tempCoursesData = new Map();
+        coursesData.courses.forEach((courseData) => {
+          const key = `${courseData.course_department}-${courseData.course_number}`;
+          if (!tempCoursesData[key]) {
+            tempCoursesData.set(key, {
+              key: key,
               dept: courseData.course_department,
               number: courseData.course_number,
               title: courseData.course_title,
               description: courseData.course_description,
-            };
-          })
-        );
+            });
+          }
+        });
+        const temp = [];
+        console.log(tempCoursesData);
+        for (const [_, value] of tempCoursesData) {
+          temp.push(value);
+        }
+        console.log(temp);
+        setCourses(temp);
+        setIsLoading(false);
       });
   };
 
@@ -46,6 +65,8 @@ export default ({ handleSelectedCourse, handleAddCourse, cart }) => {
         search={search}
         handleSearch={handleSearch}
         handleSearchSubmit={handleSearchSubmit}
+        error={error}
+        isLoading={isLoading}
       />
       {courses.map((props) => {
         const key = `${props.dept}-${props.number}`;

@@ -1,17 +1,18 @@
 import React, { Component } from "react";
+import { Router } from "@reach/router";
 import "./App.css";
 import "bulma/css/bulma.css";
 
-import Nav from "./components/Nav";
-import CourseSelector from "./components/CourseSelector";
+import CourseSelectorPage from "./screens/CourseSelectorPage";
+import ReceiptPage from "./screens/ReceiptPage";
 
 class App extends Component {
   render() {
     return (
-      <>
-        <Nav />
-        <CourseSelector />
-      </>
+      <Router>
+        <CourseSelectorPage path="/" />
+        <ReceiptPage path="/receipt" />
+      </Router>
     );
   }
 }

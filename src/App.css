@@ -14,6 +14,8 @@
   width: 40%;
   display: flex;
   flex-direction: column;
+  margin-left: 5%;
+  margin-top: 5%;
 }
 
 .cart-container {
@@ -34,11 +36,8 @@
 }
 
 .add-button {
-  margin-left: 60%;
-}
-
-.course-delete {
-  margin-bottom: 1%;
+  position: absolute;
+  right: 0;
 }
 
 .course-box:hover,
@@ -48,4 +47,13 @@
 
 .disabled-box {
   opacity: 0.4;
+}
+
+.search-bar {
+  margin-bottom: 5%;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
 }

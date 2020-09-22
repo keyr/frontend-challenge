@@ -17,9 +17,7 @@ export default ({
         </h2>
         <button
           className="button is-primary add-button"
-          onClick={() =>
-            handleAddCourse(`${courseProps.dept}-${courseProps.number}`)
-          }
+          onClick={() => handleAddCourse(courseProps.key)}
           disabled={isDisabled}
         >
           Add Course
